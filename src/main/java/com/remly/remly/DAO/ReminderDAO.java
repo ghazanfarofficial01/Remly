@@ -1,4 +1,7 @@
 package com.remly.remly.DAO;
 
-public class ReminderDAO {
+import com.remly.remly.model.Reminder;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface ReminderDAO extends JpaRepository<Reminder, Long> {
 }

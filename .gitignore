@@ -31,3 +31,6 @@ build/
 
 ### VS Code ###
 .vscode/
+/src/main/java/com/remly/remly/service/CustomUserDetailsService.java
+src/main/java/com/remly/remly/model/UserPrincipal.java
+.env

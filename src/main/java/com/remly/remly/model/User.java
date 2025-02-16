@@ -1,18 +1,12 @@
-package com.gm.remly.model;
+package com.remly.remly.model;
 
 import jakarta.persistence.*;
-import lombok.*;
-
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "users")
-@Getter
-@Setter
-@NoArgsConstructor
-@AllArgsConstructor
-@Builder
+
 public class User {
 
     @Id
@@ -95,6 +89,36 @@ public class User {
     protected void onUpdate() {
         updatedAt = LocalDateTime.now();
     }
+
+    //Constructors
+    public User(String fullName, String email, String passwordHash, String phoneNumber, String profilePicture, LocalDate dateOfBirth, String oauthProvider, String oauthProviderId, Boolean isVerified, String verificationToken, String passwordResetToken, Integer failedLoginAttempts, LocalDateTime lastLogin, String role, Boolean twoFactorEnabled, String subscriptionPlan, LocalDate subscriptionExpiry, String notificationPreferences, String timezone, String language, LocalDateTime createdAt, LocalDateTime updatedAt) {
+        this.fullName = fullName;
+        this.email = email;
+        this.passwordHash = passwordHash;
+        this.phoneNumber = phoneNumber;
+        this.profilePicture = profilePicture;
+        this.dateOfBirth = dateOfBirth;
+        this.oauthProvider = oauthProvider;
+        this.oauthProviderId = oauthProviderId;
+        this.isVerified = isVerified;
+        this.verificationToken = verificationToken;
+        this.passwordResetToken = passwordResetToken;
+        this.failedLoginAttempts = failedLoginAttempts;
+        this.lastLogin = lastLogin;
+        this.role = role;
+        this.twoFactorEnabled = twoFactorEnabled;
+        this.subscriptionPlan = subscriptionPlan;
+        this.subscriptionExpiry = subscriptionExpiry;
+        this.notificationPreferences = notificationPreferences;
+        this.timezone = timezone;
+        this.language = language;
+        this.createdAt = createdAt;
+        this.updatedAt = updatedAt;
+    }
+
+    public User() {
+    }
+   //Constructors END
 
     //Getter and Settter
     public String getRole() {
