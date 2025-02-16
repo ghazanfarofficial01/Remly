@@ -5,7 +5,7 @@ import com.remly.remly.DAO.ReminderDAO;
 import com.remly.remly.DAO.UserDAO;
 import com.remly.remly.model.Reminder;
 import com.remly.remly.model.User;
-import com.remly.remly.model.UserPrincipal;
+//import com.remly.remly.model.UserPrincipal;
 import com.remly.remly.utils.ReminderValidatorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;

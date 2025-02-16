@@ -2,7 +2,7 @@ package com.remly.remly.service;
 
 import com.remly.remly.DAO.UserDAO;
 import com.remly.remly.model.User;
-import com.remly.remly.model.UserPrincipal;
+//import com.remly.remly.model.UserPrincipal;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;

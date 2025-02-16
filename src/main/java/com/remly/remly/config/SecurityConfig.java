@@ -2,7 +2,7 @@ package com.remly.remly.config;
 
 
 import com.remly.remly.service.CustomOAuth2SuccessHandler;
-import com.remly.remly.service.CustomUserDetailsService;
+//import com.remly.remly.service.CustomUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -20,8 +20,8 @@ import org.springframework.security.web.SecurityFilterChain;
 @EnableWebSecurity
 public class SecurityConfig {
 
-    @Autowired
-    private CustomUserDetailsService userDetailsService;
+//    @Autowired
+//    private CustomUserDetailsService userDetailsService;
 
     @Autowired
     private CustomOAuth2SuccessHandler customOAuth2SuccessHandler;
