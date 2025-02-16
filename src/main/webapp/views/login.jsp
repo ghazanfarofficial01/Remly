@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Remly</title>
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <!-- Custom CSS -->
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            background: #f5f5f5;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+        }
+
+        .left, .right {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .left {
+            background: linear-gradient(to bottom right, #2563eb, #9333ea);
+            color: white;
+            padding: 40px 20px;
+        }
+
+        .left h1 {
+            font-size: 2rem;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .left h1 i {
+            font-size: 1.8rem;
+            color: #ffdd57; /* Yellow color for the bell icon */
+        }
+
+        .left p {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.9);
+            max-width: 90%;
+        }
+
+        .right {
+            background: white;
+            padding: 40px 20px;
+        }
+
+        .right h2 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        .right p {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 20px;
+        }
+
+        .login-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            width: 100%;
+            max-width: 300px;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            margin: 10px 0;
+            text-decoration: none;
+            color: white;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .login-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .login-btn i {
+            font-size: 1.2rem;
+        }
+
+        .google {
+            background: #db4437;
+        }
+
+        .google:hover {
+            background: #c23321;
+        }
+
+        .outlook {
+            background: #0078d4;
+        }
+
+        .outlook:hover {
+            background: #005bb5;
+        }
+
+        /* Desktop Styles */
+        @media (min-width: 768px) {
+            .container {
+                flex-direction: row;
+            }
+
+            .left, .right {
+                flex: 1;
+                padding: 60px;
+            }
+
+            .left h1 {
+                font-size: 2.5rem;
+            }
+
+            .left p {
+                font-size: 1rem;
+            }
+
+            .right h2 {
+                font-size: 2rem;
+            }
+
+            .right p {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <!-- Left Section -->
+    <div class="left">
+        <h1><i class="fas fa-bell"></i>Hello Remly!</h1>
+        <p>Never miss an important event again! Set reminders and get notified directly in your email.</p>
+    </div>
+
+    <!-- Right Section -->
+    <div class="right">
+        <h2>Welcome Back!</h2>
+        <p>Login with your Google or Outlook account to continue.</p>
+        <a href="/oauth2/authorization/google" class="login-btn google">
+            <i class="fab fa-google"></i> Login with Google
+        </a>
+        <a href="/oauth2/authorization/microsoft" class="login-btn outlook">
+            <i class="fab fa-microsoft"></i> Login with Outlook
+        </a>
+    </div>
+</div>
+</body>
+</html>
