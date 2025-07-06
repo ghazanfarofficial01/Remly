@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en" x-data="{ dark: false }"
+      x-bind:class="{ 'dark': dark }"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Set a Reminder</title>
+
+    <!-- Tailwind CSS via CDN -->
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: { extend: { colors: { primary: '#3B82F6' }}}
+        }
+    </script>
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Alpine.js for interactivity -->
+    <script src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
+</head>
+
+<body class="bg-gray-100 dark:bg-gray-900 text-gray-800 dark:text-gray-200 transition-colors duration-500">
+
+<!-- Dark Mode Toggle -->
+<div class="fixed top-4 right-4">
+    <button @click="dark = !dark"
+            class="p-2 bg-white dark:bg-gray-800 rounded-full shadow-md focus:outline-none">
+        <template x-if="!dark">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-yellow-500" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M12 4.354a7.646 7.646 0 100 15.291 7.646 7.646 0 000-15.291zm0 13.291a5.646 5.646 0 110-11.292 5.646 5.646 0 010 11.292z"/>
+            </svg>
+        </template>
+        <template x-if="dark">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-300" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M17.293 16.293A8 8 0 018.707 7.707 8.002 8.002 0 0012 20a8.002 8.002 0 005.293-3.707z"/>
+            </svg>
+        </template>
+    </button>
+</div>
+
+<!-- Page Container -->
+<div class="min-h-screen flex items-center justify-center px-4">
+    <div class="w-full max-w-2xl bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-8 space-y-6 animate-fade-in">
+
+        <!-- Header -->
+        <h1 class="text-3xl font-semibold text-center text-primary dark:text-blue-400
+                 animate-pulse">Set a Reminder</h1>
+
+        <!-- Reminder Form -->
+        <form th:action="@{/reminders}" method="post" class="space-y-5">
+
+            <!-- Title Field -->
+            <div class="relative group">
+                <input type="text" name="title" th:field="*{title}"
+                       placeholder=" "
+                       class="peer w-full bg-gray-100 dark:bg-gray-700 rounded-lg px-4 py-3
+                        focus:outline-none focus:ring-2 focus:ring-primary
+                        transition" required />
+                <label class="absolute left-4 top-3 text-gray-500 dark:text-gray-400
+                        peer-placeholder-shown:top-3 peer-placeholder-shown:text-base
+                        peer-placeholder-shown:text-gray-400
+                        peer-focus:-top-2 peer-focus:text-sm peer-focus:text-primary
+                        transition-all pointer-events-none">
+                    Enter reminder title
+                </label>
+            </div>
+
+            <!-- Message Field -->
+            <div class="relative group">
+          <textarea name="message" th:field="*{message}"
+                    placeholder=" " rows="4"
+                    class="peer w-full bg-gray-100 dark:bg-gray-700 rounded-lg px-4 py-3
+                           focus:outline-none focus:ring-2 focus:ring-primary
+                           transition resize-none" required></textarea>
+                <label class="absolute left-4 top-3 text-gray-500 dark:text-gray-400
+                        peer-placeholder-shown:top-3 peer-placeholder-shown:text-base
+                        peer-placeholder-shown:text-gray-400
+                        peer-focus:-top-2 peer-focus:text-sm peer-focus:text-primary
+                        transition-all pointer-events-none">
+                    Enter your reminder message
+                </label>
+            </div>
+
+            <!-- Date & Time Row -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                <div class="relative group">
+                    <input type="date" name="date" th:field="*{date}"
+                           class="peer w-full bg-gray-100 dark:bg-gray-700 rounded-lg px-4 py-3
+                          focus:outline-none focus:ring-2 focus:ring-primary
+                          transition" required />
+                    <label class="absolute left-4 top-3 text-gray-500 dark:text-gray-400
+                          peer-focus:-top-2 peer-focus:text-sm peer-focus:text-primary
+                          transition-all pointer-events-none">
+                        Reminder Date
+                    </label>
+                </div>
+                <div class="relative group">
+                    <input type="time" name="time" th:field="*{time}"
+                           class="peer w-full bg-gray-100 dark:bg-gray-700 rounded-lg px-4 py-3
+                          focus:outline-none focus:ring-2 focus:ring-primary
+                          transition" required />
+                    <label class="absolute left-4 top-3 text-gray-500 dark:text-gray-400
+                          peer-focus:-top-2 peer-focus:text-sm peer-focus:text-primary
+                          transition-all pointer-events-none">
+                        Reminder Time
+                    </label>
+                </div>
+            </div>
+
+            <!-- Timezone (read-only) -->
+            <div class="relative group">
+                <input type="text" name="timezone" th:field="*{timezone}"
+                       th:value="${timezone}"
+                       readonly
+                       class="peer w-full bg-gray-100 dark:bg-gray-700 rounded-lg px-4 py-3 cursor-not-allowed" />
+                <label class="absolute left-4 top-3 text-gray-500 dark:text-gray-400
+                        transition-all pointer-events-none">
+                    Timezone
+                </label>
+            </div>
+
+            <!-- Repeat Toggle -->
+            <div class="flex items-center space-x-2">
+                <input type="checkbox" name="repeatDaily" th:field="*{repeatDaily}"
+                       id="repeatDaily"
+                       class="h-5 w-5 text-primary focus:ring-primary border-gray-300 rounded"/>
+                <label for="repeatDaily" class="select-none">Repeat Daily</label>
+            </div>
+
+            <!-- Submit -->
+            <button type="submit"
+                    class="w-full py-3 rounded-lg bg-gradient-to-r from-primary to-blue-600
+                       text-white font-medium uppercase tracking-wider
+                       shadow-lg hover:shadow-xl transform hover:-translate-y-0.5
+                       transition-all">
+                Set Reminder
+            </button>
+        </form>
+
+    </div>
+</div>
+
+<!-- Tailwind Animation Extension -->
+<style>
+    @keyframes fade-in {
+        from { opacity: 0; transform: translateY(10px); }
+        to   { opacity: 1; transform: translateY(0); }
+    }
+    .animate-fade-in { animation: fade-in 0.6s ease-out forwards; }
+</style>
+</body>
+</html>

@@ -21,13 +21,14 @@ function validateForm(event) {
     }
 
     // Check if the selected time is in the past for today's date
-    if (selectedDate.setHours(0, 0, 0, 0) === currentDate.setHours(0, 0, 0, 0)) {
+    if (selectedDate.setHours(0, 0, 0, 0) == currentDate.setHours(0, 0, 0, 0)) {
         const currentHours = currentDate.getHours();
         const currentMinutes = currentDate.getMinutes();
         const [selectedHours, selectedMinutes] = selectedTime.split(':').map(Number);
-
+        console.log(currentMinutes, currentHours);
         if (selectedHours < currentHours || (selectedHours === currentHours && selectedMinutes <= currentMinutes)) {
             alert('Reminder time must be in the future.');
+            console.log("under if");
             event.preventDefault();
             return false;
         }
