@@ -1,6 +1,5 @@
 package com.remly.remly.controller;
 
-import com.nimbusds.jose.shaded.gson.annotations.JsonAdapter;
 import com.remly.remly.DAO.ReminderDAO;
 import com.remly.remly.DAO.UserDAO;
 import com.remly.remly.model.Reminder;
@@ -11,11 +10,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import java.io.PrintWriter;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.List;
@@ -35,11 +34,11 @@ public class ReminderController {
     private ReminderValidatorService validatorService;
     @GetMapping("setReminder")
     public String getReminderForm() {
-        return "setReminder";
+        return "reminderForm";
     }
 
     @PostMapping("setReminder")
-    public String setReminder(@RequestBody MultiValueMap reminder, @AuthenticationPrincipal OAuth2User principal, RedirectAttributes redirectAttributes) {
+    public String setReminder(@RequestBody MultiValueMap reminder, @AuthenticationPrincipal OAuth2User principal, RedirectAttributes redirectAttributes, Model model) {
 
         Reminder reminderObj = new Reminder();
         //System.out.println(reminder);
@@ -64,8 +63,9 @@ public class ReminderController {
         Map<String, String> errors = validatorService.validateReminder(reminderObj);
 
         if (!errors.isEmpty()) {
-            //System.out.println(errors);
-            return "Error: " + errors;
+            System.out.println(errors);
+            model.addAttribute("errors", errors);
+            return "errors/error";
             //return errors.get("message");
         }
 
@@ -88,6 +88,6 @@ public class ReminderController {
 
     @GetMapping("reminders")
     public String getReminders() {
-        return "viewReminders";
+        return "reminderForm";
     }
 }
