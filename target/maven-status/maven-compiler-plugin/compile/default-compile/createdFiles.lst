@@ -1,0 +1,11 @@
+com\remly\remly\RemlyApplication.class
+com\remly\remly\model\Reminder.class
+com\remly\remly\model\Reminder$ReminderBuilder.class
+com\remly\remly\config\SecurityConfig.class
+com\remly\remly\service\CustomOAuth2SuccessHandler.class
+com\remly\remly\controller\ReminderController.class
+com\remly\remly\controller\AuthController.class
+com\remly\remly\model\User.class
+com\remly\remly\DAO\UserDAO.class
+com\remly\remly\utils\ReminderValidatorService.class
+com\remly\remly\DAO\ReminderDAO.class

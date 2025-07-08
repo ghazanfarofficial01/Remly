@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Set Reminder</title>
+  <!-- Tailwind CSS (via CDN) -->
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100">
+<div class="max-w-md mx-auto mt-10 p-6 bg-white rounded-lg shadow-lg">
+  <h2 class="text-2xl font-bold mb-6">Set a Reminder</h2>
+  <form id="reminderForm" action="setReminder" method="post" onsubmit="return validateForm(event)" novalidate>
+
+    <!-- Title Field -->
+    <div class="relative z-0 mb-6 w-full group">
+      <input type="text" id="title" name="title" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
+      <label for="title" class="absolute text-sm text-gray-500 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:scale-75 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0">
+        Title
+      </label>
+    </div>
+    <div id="titleError" class="text-red-500 text-sm hidden"></div>
+
+    <!-- Message Field -->
+    <div class="relative z-0 mb-6 w-full group">
+      <textarea id="message" name="message" rows="3" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required></textarea>
+      <label for="message" class="absolute text-sm text-gray-500 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:scale-75 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0">
+        Message
+      </label>
+    </div>
+    <div id="messageError" class="text-red-500 text-sm hidden"></div>
+
+    <!-- Reminder Date Field -->
+    <div class="relative z-0 mb-6 w-full group">
+      <input type="date" id="reminder_date" name="reminderDate" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " />
+      <label for="reminder_date" class="absolute text-sm text-gray-500 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:scale-75 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0">
+        Reminder Date
+      </label>
+    </div>
+    <div id="reminderDateError" class="text-red-500 text-sm hidden"></div>
+
+    <!-- Reminder Time Field -->
+    <div class="relative z-0 mb-6 w-full group">
+      <input type="time" id="reminder_time" name="reminderTime" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " />
+      <label for="reminder_time" class="absolute text-sm text-gray-500 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:scale-75 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0">
+        Reminder Time
+      </label>
+    </div>
+    <div id="reminderTimeError" class="text-red-500 text-sm hidden"></div>
+
+    <!-- Timezone Field -->
+    <div class="relative z-0 mb-6 w-full group">
+      <select id="timezone" name="timezone" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 focus:outline-none focus:ring-0 focus:border-blue-600 peer" required>
+
+        <!-- Example options: -->
+        <th:block th:replace="fragments/timezone-options :: timezoneOptions"></th:block>
+      </select>
+      <label for="timezone" class="absolute text-sm text-gray-500 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:scale-75 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0">
+        Timezone
+      </label>
+    </div>
+    <div id="timezoneError" class="text-red-500 text-sm hidden"></div>
+
+    <!-- Repeat Daily Checkbox -->
+    <div class="flex items-center mb-6">
+      <input type="checkbox" id="is_daily" name="isDaily" class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded" onclick="toggleDateInput()" />
+      <label for="is_daily" class="ml-2 text-gray-700">Repeat Daily</label>
+    </div>
+    <div id="isDailyError" class="text-red-500 text-sm hidden"></div>
+
+    <!-- Submit Button -->
+    <button type="submit" class="w-full py-2 px-4 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition">
+      Set Reminder
+    </button>
+  </form>
+</div>
+
+<!-- External Validation Script -->
+<script th:src="@{/validateForm.js}"></script>
+<!-- toggleDateInput script -->
+<script>
+  function toggleDateInput() {
+    const dateInput = document.getElementById('reminder_date');
+    const dailyCheckbox = document.getElementById('is_daily');
+    dateInput.disabled = dailyCheckbox.checked;
+  }
+  document.getElementById('is_daily').addEventListener('change', toggleDateInput);
+</script>
+</body>
+</html>
