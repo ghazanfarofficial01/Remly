@@ -1,0 +1,12 @@
+C:\Users\ghaza\Downloads\Projects\Remly\src\main\java\com\remly\remly\config\SecurityConfig.java
+C:\Users\ghaza\Downloads\Projects\Remly\src\main\java\com\remly\remly\controller\AuthController.java
+C:\Users\ghaza\Downloads\Projects\Remly\src\main\java\com\remly\remly\controller\ReminderController.java
+C:\Users\ghaza\Downloads\Projects\Remly\src\main\java\com\remly\remly\DAO\ReminderDAO.java
+C:\Users\ghaza\Downloads\Projects\Remly\src\main\java\com\remly\remly\DAO\UserDAO.java
+C:\Users\ghaza\Downloads\Projects\Remly\src\main\java\com\remly\remly\model\Reminder.java
+C:\Users\ghaza\Downloads\Projects\Remly\src\main\java\com\remly\remly\model\User.java
+C:\Users\ghaza\Downloads\Projects\Remly\src\main\java\com\remly\remly\model\UserPrincipal.java
+C:\Users\ghaza\Downloads\Projects\Remly\src\main\java\com\remly\remly\RemlyApplication.java
+C:\Users\ghaza\Downloads\Projects\Remly\src\main\java\com\remly\remly\service\CustomOAuth2SuccessHandler.java
+C:\Users\ghaza\Downloads\Projects\Remly\src\main\java\com\remly\remly\service\CustomUserDetailsService.java
+C:\Users\ghaza\Downloads\Projects\Remly\src\main\java\com\remly\remly\utils\ReminderValidatorService.java
